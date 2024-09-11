@@ -18,11 +18,11 @@ class SGD(nn.Module):
         self.momentum=momentum
         self.weight_decay=weight_decay
         self.dampening=dampening
-        self.v_list={name:torch.zeros_like(param) for name,param in model.named_parameters()}
+        self.v_dict={name:torch.zeros_like(param) for name,param in model.named_parameters()}
     def step(self):
         for name, param in self.model.named_parameters():
-            self.v_list[name] = self.momentum * self.v_list[name] - (1-self.dampening)*self.lr * param.grad
-            param.data = (1 - self.weight_decay) * param.data + self.v_list[name]
+            self.v_dict[name] = self.momentum * self.v_dict[name] - (1 - self.dampening) * self.lr * param.grad - self.weight_decay * param.data
+            param.data = param.data + self.v_dict[name]
     def zero_grad(self):
         for name,param in self.model.named_parameters():
             param.grad=None

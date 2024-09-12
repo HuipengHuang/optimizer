@@ -37,5 +37,4 @@ class ADAM(nn.Module):
 
     def zero_grad(self):
         for param in self.model.parameters():
-            if param.grad is not None:
-                param.grad.data.zero_()
+            param.grad=None

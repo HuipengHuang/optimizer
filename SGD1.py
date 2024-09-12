@@ -34,7 +34,7 @@ class SGD(nn.Module):
             else:
                 param.data-=self.lr*g
     def zero_grad(self):
-        for name,param in self.model.named_parameters():
+        for param in self.model.parameters():
             param.grad=None
 
 

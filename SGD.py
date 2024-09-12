@@ -24,7 +24,7 @@ class SGD(nn.Module):
             self.v_dict[name] = self.momentum * self.v_dict[name] - (1 - self.dampening) * self.lr * param.grad - self.weight_decay * param.data
             param.data = param.data + self.v_dict[name]
     def zero_grad(self):
-        for name,param in self.model.named_parameters():
+        for param in self.model.parameters():
             param.grad=None
 
 

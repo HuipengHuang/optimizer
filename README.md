@@ -1,4 +1,4 @@
-Python implementation of common optimizers.
+Python implementation of some architectures commonly used in machine learning.
 
 SGD.py is written based on the book 'deep learning'
 
